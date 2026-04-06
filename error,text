@@ -1,0 +1,80 @@
+lutterJNI( 6839): Sending viewport metrics to the engine.
+I/ample.stackhive( 6839): Background concurrent mark compact GC freed 5249KB AllocSpace bytes, 0(0B) LOS objects, 49% free, 5313KB/10MB, paused 4.560ms,7.821ms total 104.658ms
+W/Firestore( 6839): (24.11.0) [WriteStream]: (47f204) Stream closed with status: Status{code=PERMISSION_DENIED, description=Missing or insufficient permissions., cause=null}.
+W/Firestore( 6839): (24.11.0) [Firestore]: Write failed at users/Whtjg0SsIWVmKF9wRODzWmyd0iC3/settings/notifications: Status{code=PERMISSION_DENIED, description=Missing or insufficient permissions., cause=null}
+E/flutter ( 6839): [ERROR:flutter/runtime/dart_vm_initializer.cc(40)] Unhandled Exception: [cloud_firestore/permission-denied] The caller does not have permission to execute the specified operation.
+E/flutter ( 6839): #0      FirebaseFirestoreHostApi.documentReferenceSet (package:cloud_firestore_platform_interface/src/pigeon/messages.pigeon.dart:1025:7)
+E/flutter ( 6839): <asynchronous suspension>
+E/flutter ( 6839): #1      MethodChannelDocumentReference.set (package:cloud_firestore_platform_interface/src/method_channel/method_channel_document_reference.dart:35:7)
+E/flutter ( 6839): <asynchronous suspension>
+E/flutter ( 6839): #2      NotificationSettingsRepository.getSettings (package:stackhive/features/notifications/data/notification_settings_repository.dart:53:7)
+E/flutter ( 6839): <asynchronous suspension>
+E/flutter ( 6839): #3      AnswerRepository.addAnswer (package:stackhive/features/answer/data/answer_repository.dart:83:24)        
+E/flutter ( 6839): <asynchronous suspension>
+E/flutter ( 6839): #4      _QuestionDetailScreenState.build.<anonymous closure>.<anonymous closure>.<anonymous closure> (package:stackhive/features/question/presentation/question_detail_screen.dart:147:27)
+E/flutter ( 6839): <asynchronous suspension>
+E/flutter ( 6839):
+
+
+
+createdAt
+April 4, 2026 at 8:58:54 AM UTC+5:30
+(timestamp)
+
+
+name
+"android"
+(string)
+
+
+usageCount
+3
+================
+
+bestAnswer
+true
+(boolean)
+
+
+emailEnabled
+false
+(boolean)
+
+
+newAnswers
+true
+(boolean)
+
+
+pushEnabled
+true
+(boolean)
+
+
+quietEnd
+"07:00"
+(string)
+
+
+quietHoursEnabled
+false
+(boolean)
+
+
+quietStart
+"22:00"
+(string)
+
+
+sound
+true
+(boolean)
+
+
+vibration
+true
+(boolean)
+
+
+votes
+true

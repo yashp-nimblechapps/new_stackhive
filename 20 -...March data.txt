@@ -1,0 +1,1508 @@
+Number of Screens Required
+Here’s a proper breakdown:
+
+🔐 Authentication Screens (3–4)
+
+Splash Screen
+Login Screen
+Register Screen
+Forgot Password (optional)
+
+🏠 Main User Screens (8–10)
+
+Home / Question Feed Screen
+Ask Question Screen
+Question Detail Screen
+Add Answer Screen
+Edit Question Screen
+Edit Answer Screen
+Search Screen
+Tag Filter Screen
+Notifications Screen
+User Profile Screen
+
+👑 Admin Screens (Inside Same App) (5–6)
+
+Admin Dashboard
+User Management Screen
+Question Moderation Screen
+Tag Management Screen
+Analytics Screen
+Reported Content Screen (optional)
+
+👉 Total Screens: Around 18–22 Screens
+
+-----------------------------------------------------------
+
+User Features
+
+Register/Login (Email + Google)
+Role-based access (Admin / Employee)
+Profile with activity history
+
+❓ Question Features
+Ask question
+Edit/Delete question
+Add tags
+Attach image/file (optional)
+Pagination (10 per page)
+
+💬 Answer Features
+Post answer
+Edit/Delete answer
+Upvote / Downvote
+Mark best answer
+Sort by votes
+
+🔎 Search Features
+Search by keyword
+Search by tags
+Real-time filtering
+
+🔔 Notification Features
+
+New answer notification
+Vote notification
+Mention notification
+Push notification using Firebase Cloud Messaging
+
+👑 Admin Features
+
+Viw all users
+
+Block/Unblock users
+Delete inappropriate questions
+Delete answers
+Manage tags
+View stats (total users, questions, answers)
+
+🔥 Backend (Best Option)
+
+Use Firebase (same as original project)
+You will need:
+Firebase Authentication
+Cloud Firestore (Database)
+Firebase Cloud Messaging
+Firebase Storage (for images)
+
+-----------------------------------------------------------
+
+Users Collection
+users/
+   userId:
+      name
+      email
+      role
+      photoUrl
+      createdAt
+      isBlocked
+
+Questions Collection
+questions/
+   questionId:
+      title
+      description
+      tags[]
+      userId
+      voteCount
+      bestAnswerId
+      createdAt
+
+Answers Collection
+answers/
+   answerId/
+      questionId
+      userId
+      content
+      voteCount
+      createdAt      
+-----------------------------------------------------------
+
+Extra Features To Make It Better Than Stackvia
+
+If you want higher marks / better project:
+Dark mode
+Bookmark questions
+AI answer suggestion (optional)
+Full text search improvement
+Report inappropriate content
+User badges (Top Contributor)
+Activity streak system
+
+-----------------------------------------------------------
+Documentation You Must Submit
+
+I can help you prepare:
+Abstract
+Problem statement
+Objective
+System architecture
+Database design
+Screenshots section
+Future scope
+Conclusion
+
+-----------------------------------------------------------
+
+lib/
+│
+├── main.dart
+│
+├── app/
+│   ├── app.dart
+│   ├── router.dart
+│   └── theme.dart
+│
+├── core/
+│   ├── constants/
+│   │   ├── app_constants.dart
+│   │   └── firestore_constants.dart
+│   │
+│   ├── utils/
+│   │   ├── validators.dart
+│   │   ├── date_formatter.dart
+│   │   └── extensions.dart
+│   │
+│   ├── services/
+│   │   ├── firebase_service.dart
+│   │   └── notification_service.dart
+│   │
+│   └── widgets/
+│       ├── custom_button.dart
+│       ├── custom_textfield.dart
+│       ├── loading_indicator.dart
+│       └── error_widget.dart
+│
+├── models/
+│   ├── user_model.dart
+│   ├── question_model.dart
+│   ├── answer_model.dart
+│   └── tag_model.dart
+│
+├── features/
+│
+│   ├── auth/
+│   │   ├── data/
+│   │   │   └── auth_repository.dart
+│   │   │
+│   │   ├── presentation/
+│   │   │   ├── login_screen.dart
+│   │   │   ├── register_screen.dart
+│   │   │   └── splash_screen.dart
+│   │   │
+│   │   └── provider/
+│   │       └── auth_provider.dart
+│   │
+│   ├── question/
+│   │   ├── data/
+│   │   │   └── question_repository.dart
+│   │   │
+│   │   ├── presentation/
+│   │   │   ├── home_screen.dart
+│   │   │   ├── ask_question_screen.dart
+│   │   │   ├── question_detail_screen.dart
+│   │   │   └── search_screen.dart
+│   │   │
+│   │   └── provider/
+│   │       └── question_provider.dart
+│   │
+│   ├── answer/
+│   │   ├── data/
+│   │   │   └── answer_repository.dart
+│   │   │
+│   │   ├── provider/
+│   │   │   └── answer_provider.dart
+│   │   │
+│   │   └── widgets/
+│   │       └── answer_tile.dart
+│   │
+│   ├── profile/
+│   │   └── profile_screen.dart
+│   │
+│   ├── notification/
+│   │   └── notification_screen.dart
+│   │
+│   └── admin/
+│       ├── presentation/
+│       │   ├── admin_dashboard_screen.dart
+│       │   ├── user_management_screen.dart
+│       │   ├── moderation_screen.dart
+│       │   └── tag_management_screen.dart
+│       │
+│       ├── data/
+│       │   └── admin_repository.dart
+│       │
+│       └── provider/
+│           └── admin_provider.dart
+│
+└── firebase_options.dart
+
+-----------------------------------------------------------
+App start
+→ Splash
+→ If logged in → Home
+→ If not → Login
+
+Register
+→ Auto login
+→ Home
+
+Logout
+→ Login
+
+IMP IMP IMP IMP IMP IMP IMP IMP IMP IMP IMP IMP
+-----------------------------------------------------------
+               StackHive Creation Phases
+
+🚀 Phase 1 – Project Foundation
+
+Create Flutter project
+Setup clean folder structure (feature-based)
+Add required dependencies (Firebase, Riverpod, GoRouter)
+Install Firebase CLI & FlutterFire CLI
+Create Firebase project (console)
+Run flutterfire configure
+Generate firebase_options.dart
+Initialize Firebase in main.dart
+Setup AppTheme
+Setup GoRouter
+Setup ProviderScope (Riverpod root)
+Verify app runs on emulator
+
+-----------------------------------------------------------
+
+🚀  Phase 2 DocumentationFirebase Auth integrated
+
+Firestore user document linked
+Auto login working
+Protected routing working
+Logout working
+Real-time profile updates working
+Clean Riverpod architecture
+Scalable GoRouter setup
+
+-----------------------------------------------------------
+🚀 Phase 3 – Question System
+
+Question model
+Firestore repository
+Riverpod providers
+Ask Question screen
+Firestore write
+Real-time Home feed
+Detail screen with dynamic route
+Proper GoRouter integration
+
+-----------------------------------------------------------
+🚀 Phase 4 – Answer System
+
+Answer model
+Answer repository
+Post answer
+Show answers
+Upvote/downvote
+Mark best answer
+
+(Real-time answers, Voting, Best answer selection
+Owner-based permission, Sorted best answer on top)
+
+-----------------------------------------------------------
+🚀 Phase 5 – Tag & Search & Sort System
+
+Filter by tag
+Search by keyword
+Basic pagination
+Sorting options
+
+-----------------------------------------------------------
+🚀 Phase 6 – Admin Panel
+
+Admin dashboard
+Delete question
+Block user
+View analytics
+Report System (Question/ Answer)
+
+-----------------------------------------------------------
+
+🚀 Phase 7
+
+Notification Data Model, Repository
+New Answer Notification 
+Vote Notification (Upvote/Downvote Specific)
+Dynamic Sender Name
+Real-Time Notification Screen
+Unread Badge Counter 
+Custom Top Snackbar (Core Widget)
+
+🚀 Phase 7 part 2
+
+Redesigned modern Profile screen UI
+User stats grid with counts
+Settings screen sectioned card layout
+Account Details screen implementation
+Account Status permissions logic UI
+Privacy Policy screen with policies
+About App information screen
+Help & Support FAQ bottom sheets
+Contact developer / bug report
+Reusable modern bottom sheet UI
+App Language settings bottom sheet
+
+🚀 Phase 8
+
+-----------------------------------------------------------
+
+🧭 PHASE 5 ROADMAP
+
+🔍 1️⃣ Advanced Search System
+
+Currently:
+Basic search or tag filter.
+Upgrade to:
+
+Option A (Simple)
+Title keyword search using indexed fields
+
+Option B (Better)
+Search by:
+Title
+Tags
+Description keywords
+
+Option C (Impressive)
+Debounced search
+Live filtering
+Search history
+
+🏷 2️⃣ Tag System Upgrade
+Right now tags are simple strings.
+Upgrade:
+Tag collection
+Track tag usageCount
+Admin can create/delete tags
+Auto-suggestions while typing
+This makes system structured.
+
+📌 3️⃣ Bookmark / Save Feature
+
+Let users:
+Save question
+View saved questions screen
+Store bookmarks subcollection under users
+This is resume-worthy feature.
+
+🔔 4️⃣ Notification System (Big Upgrade)
+Right now maybe none or basic.
+
+Implement:
+When someone answers your question → notify
+When someone votes on your answer → notify
+When best answer selected → notify
+
+Use:
+Firestore triggers (manual)
+Firebase Cloud Messaging
+Even in-app notification feed is enough for college.
+
+🧑‍💼 5️⃣ Admin Dashboard (Mobile-Based)
+
+Since you’re mobile-only:
+Add:
+Total users
+Total questions
+Total answers
+Most active tags
+Recent activity
+Simple analytics using Firestore queries.
+
+🎖 6️⃣ User Reputation / Points System
+
+Add:
++10 for answer
++2 per upvote
++15 for best answer
+-1 for downvote
+
+Store
+users/{uid}/reputation
+Display on profile.
+This turns project into real StackOverflow clone.
+
+🎨 7️⃣ UI & UX Polish
+
+Now polish:
+Empty states
+Loading skeletons
+Shimmer
+Confirmation dialogs
+Pull to refresh
+Pagination (limit + startAfter)
+Dark mode toggle
+
+⚡ 8️⃣ Performance Optimization
+
+Pagination for feed
+Limit answers query
+Composite indexes
+Avoid full collection reads
+Cache current user locally
+
+🏁 PHASE 6 – Resume & Production Polish
+
+When Phase 5 done:
+Create proper README
+Add architecture diagram
+Add Firestore schema diagram
+Add screenshots
+Record demo video
+Write LinkedIn post
+
+-----------------------------------------------------------
+
+✅ Question 1
+
+Title:
+Flutter Firebase not initializing on Android
+
+Description:
+My Flutter app crashes on startup after adding Firebase. I already ran flutterfire configure.
+What could be wrong?
+
+Tags:
+flutter, firebase, android
+
+✅ Question 2
+
+Title:
+Riverpod StreamProvider not updating UI
+
+Description:
+I am using StreamProvider with Firestore but UI does not refresh when data changes. 
+How to fix this?
+
+Tags:
+flutter, riverpod, state-management
+
+✅ Question 3
+
+Title:
+How to structure Flutter project feature-based?
+
+Description:
+I want to build a scalable app. Should I use feature-first or l
+ayer-first architecture in Flutter?
+
+Tags:
+flutter, architecture, clean-code
+
+✅ Question 4
+
+Title:
+GoRouter redirect not working after login
+
+Description:
+After login, my GoRouter redirect doesn’t navigate to home screen automatically. 
+What am I missing?
+
+Tags:
+flutter, gorouter, authentication
+
+-----------------------------------------------------------
+A user can mark best answer IF:
+currentUser.uid == question.userId
+
+When question owner taps the check icon:
+
+1️⃣ All answers → isBestAnswer = false
+2️⃣ Selected answer → isBestAnswer = true
+3️⃣ bestAnswerId saved in question document
+4️⃣ Stream updates
+5️⃣ Best answer automatically moves to top
+
+Because you already sorted:
+
+.orderBy('isBestAnswer', descending: true)
+-----------------------------------------------------------
+
+One vote per user
+Ability to switch vote
+Ability to remove vote
+Accurate voteCount
+
+-----------------------------------------------------------
+
+What Are Firestore Security Rules?
+
+Right now:
+Your app controls permissions in UI.
+
+Example:
+if (isQuestionOwner)
+But this is NOT secure.
+Because anyone could:
+Use Postman
+Use Firebase REST API
+Modify data directly
+Bypass your UI
+
+Security Rules = Backend Protection
+
+They enforce:
+
+✔ Who can read
+✔ Who can write
+✔ Who can delete
+✔ Who can update
+
+At Firestore server level.
+
+Even if someone hacks your app — rules still protect data.
+
+-----------------------------------------------------------
+
+🧱 Question System
+
+Create Question – Authenticated users can create questions with owner UID stored.
+Edit Question – Only question owner can update title, description, and tags.
+Delete Question – Only question owner can delete the question.
+Safe Delete Handling – Detail screen handles deleted documents without crashing.
+Real-time Home Feed – Questions stream updates instantly using snapshots().
+
+💬 Answer System
+
+Add Answer – Authenticated users can post answers to a question.
+Edit Answer – Only answer owner can edit answer content.
+Delete Answer – Answer owner or question owner can delete.
+Answer Count Sync – answerCount increments/decrements atomically via batch.
+Real-time Answer Stream – Answers update live using StreamProvider.family.
+
+👍 Voting System (Advanced)
+
+Per-User Vote Tracking – Each user has one vote document per answer.
+Vote Switching Logic – Upvote, downvote, remove vote handled via transaction.
+Vote Highlight UI – Arrows change color based on user’s vote.
+VoteCount Protection – Rules prevent negative vote values.
+Tamper Protection – Users cannot manually modify voteCount via API.
+
+🏆 Best Answer System
+
+Owner-Only Selection – Only question owner can mark best answer.
+Best Answer Badge – Visible to all users.
+Sorted Display – Best answer pinned to top via query ordering.
+bestAnswerId Sync – Stored in question document securely.
+Rule-Protected – Only question owner can modify isBestAnswer.
+
+🔐 Firestore Security Rules
+
+Authenticated Create Rules – Users must be logged in to create content.
+Owner-Based Update Rules – Only document owner can update/delete.
+Field-Level Protection – Only allowed fields can be modified.
+Vote Subcollection Secured – Users can only write their own vote doc.
+Question Update Restriction – Only answerCount allowed for non-owners.
+Users Collection Secured – Users can only modify their own profile.
+
+🧠 Architecture Level Achieved
+
+Clean Repository Pattern
+Riverpod Stream-based State
+Batch Writes + Transactions
+Scoped Security Rules
+Subcollection Data Modeling
+Production-safe Voting Logic
+
+You now have:
+
+Real-time Q&A system
+Multi-user safe backend
+Owner-based permissions
+Secure Firestore architecture
+Resume-level Firebase project
+
+-----------------------------------------------------------
+
+For tag Phase 5
+
+When user creates question:
+Question saved
+For each tag:
+If exists → usageCount++
+If not exists → create with usageCount = 1
+Firestore auto-creates tags collection
+
+PHASE 5 – Completed (Production Level)
+🏷 Tag System
+
+Structured tags collection
+usageCount with transaction
+Horizontal tag chips
+Tag filtering with arrayContains
+
+🔍 Search System
+
+searchKeywords indexing
+Firestore keyword search
+Debounced search (400ms)
+Search screen UI
+Clickable results
+
+📄 Pagination
+
+limit + startAfterDocument
+Infinite scroll
+Tag + Pagination combined
+Sort + Pagination combined
+Proper reload on filter/sort change
+
+🗳 Voting Improvements
+voteCount maintained in question document
+Instant UI vote update
+No full reload
+Scalable architecture
+
+-----------------------------------------------------------
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  
+		// =============================
+    // USERS
+    // =============================
+    match /users/{userId} {
+
+      // Any logged-in user can read profiles
+      allow read: if request.auth != null;
+
+      // User can create their own profile
+      allow create: if request.auth != null
+      	&& request.auth.uid == userId;
+
+    	// User can update their own profile
+      allow update: if request.auth != null
+      	&& request.auth.uid == userId;
+
+      // User can delete their own profile
+    	allow delete: if request.auth != null
+      	&& request.auth.uid == userId;
+    }  	
+
+
+    // QUESTIONS
+      match /questions/{questionId} {
+
+        allow read: if true;
+
+        allow create: if request.auth != null
+          && request.resource.data.userId == request.auth.uid;
+
+        allow update: if request.auth != null
+          && request.auth.uid == resource.data.userId;
+
+        allow delete: if request.auth != null
+          && request.auth.uid == resource.data.userId;
+     
+           
+
+      // ANSWERS (Subcollection)
+      match /answers/{answerId} {
+
+        // Anyone can read answers
+        allow read: if true;
+
+        // Only authenticated users can create
+        // CREATE ANSWER
+        allow create: if request.auth != null
+          && request.auth.uid == request.resource.data.userId
+          && request.resource.data.voteCount == 0
+          && request.resource.data.isBestAnswer == false
+          && request.resource.data.keys().hasAll([
+               'questionId',
+               'userId',
+               'content',
+               'voteCount',
+               'isBestAnswer',
+               'createdAt'
+             ]);
+
+        // Only answer owner can update
+        // UPDATE ANSWER (Only content allowed)
+        allow update: if request.auth != null
+          && (
+               // 1 Answer owner editing content
+               (
+                 request.auth.uid == resource.data.userId
+                 && request.resource.data.diff(resource.data)
+                      .changedKeys()
+                      .hasOnly(['content'])
+               )
+
+               ||
+
+               // 2 Voting logic (voteCount only)
+               (
+                 request.resource.data.diff(resource.data)
+                   .changedKeys()
+                   .hasOnly(['voteCount'])
+                 && request.resource.data.voteCount >= 0
+								 && request.resource.data.voteCount <= 100000
+               )
+
+               ||
+
+               // 3 Mark Best Answer (question owner only)
+               (
+                 request.resource.data.diff(resource.data)
+                   .changedKeys()
+                   .hasOnly(['isBestAnswer'])
+                 && request.auth.uid ==
+                    get(/databases/$(database)/documents/questions/$(questionId))
+                      .data.userId
+               )
+             );
+
+        // Delete allowed if:
+        // - Answer owner
+        // - OR Question owner
+        allow delete: if request.auth != null
+          && (
+              request.auth.uid == resource.data.userId
+              ||
+              request.auth.uid ==
+                get(/databases/$(database)/documents/questions/$(questionId))
+                  .data.userId
+            );
+
+        // VOTES (Nested Subcollection)
+        match /votes/{userId} {
+
+          allow read: if true;
+
+          // User can only write their own vote doc
+          allow create, update, delete: if request.auth != null
+            && request.auth.uid == userId;
+        }
+      }
+    }
+  }
+}
+
+-----------------------------------------------------------
+
+Debounce means:
+Wait a small delay before running search
+If user keeps typing, reset the timer
+Only search after user stops typing
+
+Pagination means:
+Load data in small chunks instead of everything at once.
+
+✔ Structured tags
+✔ Tag filtering
+✔ Debounced search
+✔ Infinite scroll pagination
+✔ Filter + pagination combined
+✔ Proper refresh after delete
+✔ Sorting system
+
+-----------------------------------------------------------
+Phase 6
+
+🧱 PART 1 – Admin Role Architecture
+
+🔹 1️⃣ Role System (If Not Already)
+
+In users collection:
+{
+  name: "...",
+  email: "...",
+  role: "admin" | "employee",
+  isBlocked: false,
+  reputation: 120
+}
+Only admin users can access admin routes.
+
+🔹 2️⃣ Route Protection
+
+In GoRouter:
+If:
+if (currentUser.role != 'admin')
+→ Redirect to Home
+Admin screens must be protected.
+
+📊 PART 2 – Admin Dashboard
+Create:
+features/admin/
+   presentation/
+      admin_dashboard_screen.dart
+
+🔹 3️⃣ Admin Dashboard Metrics
+Show:
+Total Users
+Total Questions
+Total Answers
+Total Votes
+Total Tags
+Today’s new users
+Today’s new questions
+Firestore queries:
+.count() (aggregation query)
+Or maintain stats collection
+
+🔹 4️⃣ Advanced (Optional but Impressive)
+
+Maintain:
+stats/global
+   totalUsers
+   totalQuestions
+   totalAnswers
+Update via batch write when creating/deleting. (delete)
+Faster dashboard loading.
+
+🗑 PART 3 – Question Moderation
+
+Create:
+moderation_screen.dart
+
+🔹 5️⃣ Admin Question Control
+
+Admin can:
+View all questions
+Delete any question
+See reported questions
+Sort by:
+Most reported
+Newest
+Most downvoted
+
+🔹 6️⃣ Safe Delete Architecture
+
+When admin deletes question:
+Transaction:
+Delete question doc
+Delete answers subcollection
+Decrement tag usageCount
+Update stats
+No orphan data.
+
+🚫 PART 4 – User Management
+
+Create:
+user_management_screen.dart
+
+🔹 7️⃣ Admin User Action
+Admin can:
+View all users
+Search user
+Block / Unblock
+Promote to Admin
+View user activity
+
+🔹 8️⃣ Blocking Logic
+
+If user.isBlocked == true:
+Prevent:
+Creating questions
+Posting answers
+Voting
+Enforce both:
+Frontend check
+Firestore rules check
+
+📈 PART 5 – Analytics
+
+Add:
+analytics_screen.dart
+
+🔹 9️⃣ Basic Analytics
+Most active user
+Most used tag
+Top voted question
+Top contributor
+Week
+Simple chart library:
+fl_chart
+
+🔹 10️⃣ Trend System (Optional Advanced)
+
+Store daily counters:
+stats/daily/2026-02-22
+   questionsCreated
+   answersCreated
+   newUsers
+Then show growth.
+Very impressive for viva.
+
+🚨 PART 6 – Report System (Strong Feature)
+
+Add:
+reports collection
+When user clicks "Report":
+reports/
+   reportId:
+       contentId
+       contentType (question/answer)
+       reportedBy
+       reason
+       createdAt
+
+Admin sees:
+Reported content queue
+Can approve / dismiss
+
+🔐 PART 7 – Security Hardening
+Update Firestore rules:
+Only admin can delete any question
+Only admin can change role
+Only admin can view all users
+Blocked users cannot write
+
+🧠 Architecture Improvements in Phase 6
+Centralized stats collection
+Batch operations
+Transaction safety
+Role-based routing
+Admin-only UI separation
+
+🎯 After Phase 6 Your Project Becomes:
+
+✔ Full-stack role-based app
+✔ Moderation-ready
+✔ Abuse-resistant
+✔ Analytics-enabled
+✔ Production-grade
+
+This is not a college CRUD app anymore.
+
+🏁 PHASE 6 IMPLEMENTATION ORDER
+
+1️⃣ Role protection
+2️⃣ Admin dashboard metrics
+3️⃣ User management
+4️⃣ Question moderation
+5️⃣ Blocking system
+6️⃣ Analytics
+7️⃣ Reports
+
+----------------------------------------------------
+Can add later on
+
+🔥 1️⃣ Activity Summary (Very Important)
+
+Add a small stats row:
+Questions Asked
+Answers Posted
+Total Votes Received
+Reputation Points
+Example layout:
+
+[ 12 Questions ]  [ 34 Answers ]
+[ 120 Votes ]     [ 450 Points ]
+
+➡ Makes profile feel alive
+🏆 2️⃣ Reputation / Points System
+
+Add:
+
+⭐ Reputation score
+Level badge (Beginner / Contributor / Expert)
+Progress bar to next level
+This increases engagement massively.
+
+🕒 3️⃣ Account Info Section - - - - - - -
+Show:
+Member since (createdAt)
+Last login time
+Account ID (shortened)
+Professional touch.
+
+🔔 4️⃣ Notification Preferences
+Toggle switches:
+Email notifications
+App notifications
+Weekly summary
+Good for Phase 7.
+
+🔐 5️⃣ Security Section
+
+Add:
+Change Password
+Two-factor authentication (future)
+Active sessions
+Delete Account
+Very SaaS-like.
+
+📝 6️⃣ Edit Profile - - - - - 
+
+Edit Name
+Upload Profile Image
+Update Bio
+Social links (optional)
+
+📊 7️⃣ Personal Analytics (Mini Dashboard) - - - - - - -
+
+For Admin & Employee:
+Most used tag
+Best answer count
+Top voted question
+Mini analytics card.
+
+🚫 8️⃣ Blocked User Extra Info
+
+If isBlocked == true:
+Show reason (if stored)
+Contact admin button
+
+🎨 9️⃣ Theme / App Settings - - - - - 
+
+Add:
+Dark mode toggle
+App version
+About StackHive
+
+---------------------------------------------------------
+
+🚀 PHASE 7 – Notification System (Full Roadmap)
+
+We divide into 4 layers:
+Notification Data Model
+Trigger Logic
+In-App Notification System
+Push Notifications (FCM)
+Notification Preferences
+
+🧱 PART 1 – Notification Data Architecture
+🔹 1️⃣ Create Notifications Collection
+
+Recommended structure:
+
+notifications/
+   notificationId:
+       receiverId: "uid"
+       senderId: "uid"
+       type: "answer" | "vote" | "mention"
+       questionId: "id"
+       answerId: "id"
+       isRead: false
+       createdAt: timestamp
+
+Alternative scalable structure:
+users/{uid}/notifications/{notificationId}
+
+👉 Recommended: Subcollection under users.
+
+Why?
+Easy query per user
+Cleaner security rules
+No filtering required
+
+🧠 PART 2 – When To Create Notifications
+We define clear trigger events.
+🔹 2️⃣ New Answer Notification
+
+When:
+
+Someone answers a question
+Trigger:
+If answer.userId != question.userId
+Create notification for question.userId
+
+Type:
+type: "new_answer"
+🔹  Vote Notification
+
+When:
+
+Someone votes on your answer
+Trigger:
+If vote.userId != answer.userId
+Type:
+type: "vote"
+Important:
+Prevent duplicate spam notifications.
+
+
+📲 PART 3 – In-App Notification System
+🔹  Notification Model
+
+Create:
+models/notification_model.dart
+Fields:
+id
+senderId
+type
+questionId
+answerId
+isRead
+createdAt
+
+🔹 6️⃣ Notification Repository
+
+Functions:
+createNotification()
+getNotifications(userId)
+markAsRead(notificationId)
+markAllAsRead()
+deleteNotification()
+Use StreamProvider for live updates.
+
+🔹 7️⃣ Notification Screen UI
+
+Create:
+
+notification_screen.dart
+
+Features:
+List of notifications
+Different icons per type
+Time ago formatting
+Tap to navigate to question
+Unread indicator
+Mark as read on tap
+
+🔹 8️⃣ Notification Badge
+
+Add red dot in AppBar:
+If unreadCount > 0
+Show badge
+Use:
+.where("isRead", isEqualTo: false)
+📡 PART 4 – Push Notifications (Firebase Cloud Messaging)
+
+Now we go real production.
+
+🔹 9️⃣ Setup FCM
+Already added dependency.
+
+Steps:
+Request notification permission
+Get device FCM token
+Save token in:
+users/{uid}/fcmToken
+🔹 10️⃣ Sending Push Notifications
+
+Two approaches:
+
+Option A – Simple (Client-based)
+When creating notification → also send FCM message.
+Not recommended for production.
+
+Option B – Proper Way (Recommended)
+Use:
+
+🔥 Firebase Cloud Functions
+
+When notification document created:
+Cloud Function triggers
+→ Sends push to receiver’s fcmToken
+This is very impressive in viva.
+
+🔔 PART 5 – Notification Preferences
+
+Create in users document:
+notificationSettings: {
+   app: true,
+   email: false,
+   weeklySummary: true
+}
+🔹 11️⃣ Notification Settings Screen
+
+Toggle switches:
+App Notifications
+Weekly Summary
+
+Before sending notification:
+Check:
+if user.notificationSettings.app == true
+
+🛡 PART 6 – Security Rules
+
+Add:
+Users can only read their own notifications
+Users cannot create notifications manually
+Only system writes allowed (if using Cloud Functions)
+
+🏗 ARCHITECTURE FLOW
+User A answers
+↓
+Notification doc created
+↓
+In-app stream updates
+↓
+FCM push sent
+↓
+User B receives notification
+↓
+Tap → navigates to question
+
+🚀 PHASE 7 IMPLEMENTATION ORDER
+
+1️⃣ Notification model
+2️⃣ Firestore subcollection
+3️⃣ Create answer notification
+4️⃣ Create vote notification
+5️⃣ Notification screen
+6️⃣ Badge system
+7️⃣ FCM integration
+8️⃣ Notification preferences
+
+---------------------------------------------
+Haptic Feedback
+Haptic feedback = small vibration when user interacts.
+Example:
+
+When you long press something → slight vibration
+When you like a post → small tick vibration
+When FaceID unlocks → soft vibration
+It makes the app feel premium and responsive.
+
+🧠 In StackHive
+
+When you:
+
+✅ Post question → small success vibration
+
+❌ Error → stronger vibration
+👍 Upvote → light vibration
+
+It improves user experience without visual clutter.
+📦 In Flutter (very simple)
+import 'package:flutter/services.dart';
+
+HapticFeedback.lightImpact();   // soft
+HapticFeedback.mediumImpact();  // medium
+HapticFeedback.heavyImpact();   // strong
+
+Example:
+
+HapticFeedback.lightImpact();
+AppSnackBar.show(context, message: "Question deleted");
+
+----------------------------------------------------------------
+
+Phase 6 chat data
+🔐 Role-Based Access System
+Added role and isBlocked fields with admin-only route protection.
+
+📊 Admin Dashboard UI
+Designed modern dashboard with stats cards and management navigation.
+
+📊 Global Stats Architecture
+Implemented stats/global document with real-time counters.
+
+🚫 Blocking Enforcement System
+Prevented blocked users from creating, answering, and voting (frontend + Firestore rules).
+
+🗑 Safe Question Delete (Transaction-Based)
+Batch-deleted question + answers + decremented stats + updated tag usage.
+
+🧹 Safe Answer Delete
+Deleted individual answers with correct stat and vote adjustments.
+
+📌 Tag Usage Consistency Fix
+Handled missing tag documents safely to prevent batch failures.
+
+📈 Basic Analytics Dashboard
+Added most-used tag, top-voted question, top contributor, and platform totals.
+
+📊 fl_chart Integration
+Added responsive bar chart for visual analytics.
+
+⚡ Real-Time Analytics Update
+Converted analytics to stream-based provider for live stat refresh.
+
+🧩 Moderation Detail Screen
+Created question detail moderation screen with answer-level delete controls.
+
+👤 Profile Screen UI
+Created premium profile screen with role badge, status indicator, and logout.
+
+🚨 Report System (Backend)
+Built reports collection structure with status-based moderation lifecycle.
+
+🔁 Duplicate Report Prevention
+Prevented same user from reporting same content while status is pending.
+
+🔄 Re-Report After Resolve
+Allowed users to report again once admin marks previous report as resolved.
+Report Model, Report Repository, Report Controller (Riverpod)
+
+🧾 Admin Report Management Screen
+Built real-time admin screen to view, filter, and resolve reports.
+
+----------------------------------------------------------------
+
+Phase 7
+
+Notification Data Model, Repository
+  Created a scalable Firestore notification structure under users/{uid}/notifications.
+  Built create, read, mark as read, delete, and real-time stream functions.
+
+New Answer Notification – Automatically notifies question owner when someone answers.
+Vote Notification (Upvote/Downvote Specific) – Sends notification only for new votes with vote type included.
+Best Answer Notification – Notifies answer author when their answer is marked as best.
+Dynamic Sender Name – Stored senderName in notification document for personalized messages.
+Real-Time Notification Screen – Built live notification list using Riverpod StreamProvider.
+
+Unread Badge Counter – Added real-time red badge on bottom navigation bell icon.
+
+Custom Top Snackbar (Core Widget) – Built reusable Instagram-style top overlay snackbar.
+
+
+
+
+
+1 at top appbar 3 lines icon that lead to setting and activity screen like instagram
+in that we can show
+ i about user -> that shows circular avatar and below name date joined etc as intagram
+
+ii then dark mode light mode facility
+iii then about app
+iv then help option that shows contact Yash the developer
+v another can be Privacy Policy.....
+vi Account status that you are blocked by admin or not (in that shows Ciccrular avatr name and feature you can access and what can not access
+i will tell you this when we building this )
+...........then you suggest and provide other options (maybe time management)
+vii log out button at end
+
+
+1️⃣ Fix Firestore structure for scaling
+2️⃣ Add Activity Timeline screen
+3️⃣ Build Settings page
+4️⃣ Build Public profile view
+5️⃣ Add reputation level system
+
+
+
+Email Notifications (You haven't implemented)
+Right now this toggle does nothing.
+To make it work you would need:
+Firebase Cloud Functions
+Send email using:
+SendGrid
+Resend
+Nodemailer
+Firebase Extension (Trigger Email)
+
+Example flow:
+User gets answer
+      ↓
+Cloud Function triggered
+      ↓
+Send email notification
+
+Since you haven't built this yet, best practice is to temporarily disable the switch.
+Example:
+_SettingsSwitchTile(
+  title: "Email Notifications",
+  value: settings.emailEnabled,
+  onChanged: null, // disables switch
+),
+Or show subtitle:
+Email Notifications
+Coming soon
+
+2️⃣ Sound (Does it work?)
+Currently NO, it does nothing.
+To make it work you need to play a sound when a new notification arrives.
+Use package:
+audioplayers
+Example:
+audioplayers: ^5.2.1
+Then when a new notification appears:
+
+final player = AudioPlayer();
+player.play(AssetSource('notification.mp3'));
+But only if:
+settings.sound == true
+
+Example:
+if (settings.sound) {
+  player.play(AssetSource('notification.mp3'));
+}
+
+
+4️⃣ Frequency (Instant / Daily / Weekly)
+This is used to control how notifications are delivered.
+Example:
+Frequency	Behavior
+Instant	Show immediately
+Daily	Send summary once per day
+Weekly	Send summary once per week
+
+Example Daily Summary:
+Today you have:
+• 4 new answers
+• 12 votes
+• 1 best answer
+
+But implementing this requires:
+Scheduled Cloud Functions
+Background jobs
+Example schedule:
+Daily → every 24h
+Weekly → every Sunday
+Since you haven't built this yet, disable it for now.
+
+Example:
+_FrequencyTile(
+  title: "Daily summary",
+  value: "daily",
+  groupValue: settings.frequency,
+  onChanged: null,
+)
+
+
+
+////////////////////////////////////////////////////////
+Act as a senior mobile UI/UX designer with 3–4+ years of professional experience designing modern high-quality apps.
+
+Your task is to redesign and improve the UI of my mobile application to make it look premium, modern, and high-class. Use design principles similar to modern product design used by companies like Apple, Stripe, and modern SaaS products.
+
+Design guidelines:
+- The UI must support both Light Mode and Dark Mode.
+- Use modern UI patterns inspired by Figma’s website and modern design systems.
+- Focus on clean layouts, proper spacing, hierarchy, and accessibility.
+- Use modern typography, soft shadows, rounded corners, and smooth color palettes.
+- The design should feel premium and professional, suitable for a high-profile app.
+- Follow modern mobile UI/UX best practices (2024–2026 style).
+- Suggest better colors, fonts, spacing, and components.
+
+Task:
+1. First redesign the **Login Screen**.
+2. Improve layout, spacing, and visual hierarchy.
+3. Add modern UI elements such as:
+   - stylish input fields
+   - premium buttons
+   - subtle icons
+   - smooth card layouts
+4. Make the design responsive and adaptable to dark mode.
+5. Suggest animations or micro-interactions if helpful.
+
+Output requirements:
+- Explain the design improvements.
+- Provide improved UI structure.
+- Then provide the improved code based on my existing code.
+
+Here is my current code:
+{PASTE YOUR OLD CODE HERE}
+
+
+
+in admin module 
+add one thing tag mangement as same user management
+in which admin can delete the tags 
+and while deleting tag global stats should be updates count should be updates
+
+in screen ui shows list of Tags
+and in tag card shows count of that tags and a delete icon
+
+below i provide you
+tag model
+
+tag repository
+
+tag provider
+
+
+

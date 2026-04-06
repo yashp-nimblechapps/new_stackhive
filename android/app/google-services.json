@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "739978018228",
+    "project_id": "stackhive-1420",
+    "storage_bucket": "stackhive-1420.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739978018228:android:226026c9290c9be5c106e1",
+        "android_client_info": {
+          "package_name": "com.example.stackhive"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmzVyf3jr3Exa8iq_MdaCKOwd9x01Alds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
