@@ -10,6 +10,13 @@ import 'package:stackhive/features/profile/provider/profile_provider.dart';
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
+  String greeting() {
+    final hour = DateTime.now().hour;
+    if (hour < 12) return "Good Morning";
+    if (hour < 18) return "Good Afternoon";
+    return "Good Evening";
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userAsync = ref.watch(currentUserProvider);
@@ -34,28 +41,97 @@ class ProfileScreen extends ConsumerWidget {
                     Container(
                       height: 200,
                       width: double.infinity,
-                      padding: EdgeInsets.only(top: 50, right: 25),
                       decoration: BoxDecoration(
-                        color: theme.colorScheme.primary,
+                        gradient: LinearGradient(
+                          colors: [
+                            theme.colorScheme.primary,
+                            theme.colorScheme.primary.withValues(alpha: 0.7),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
                       ),
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: Container(
-                          height: 42,
-                          width: 42,
-                          decoration: BoxDecoration(
-                            color: theme.colorScheme.surface,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Center(
-                            child: IconButton(
-                              icon: Icon(Icons.settings),
-                              onPressed: () {
-                                context.push('/settings');
-                              },
+                      child: Stack(
+                        children: [
+                          /// Decorative Blob (Top Right)
+                          Positioned(
+                            top: -40,
+                            right: -20,
+                            child: Container(
+                              height: 140,
+                              width: 140,
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.08),
+                                shape: BoxShape.circle,
+                                
+                              ),
                             ),
                           ),
-                        ),
+
+                          /// Decorative Blob (Bottom Left)
+                          Positioned(
+                            bottom: -50,
+                            left: -30,
+                            child: Container(
+                              height: 120,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.05),
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ),
+
+                          /// Branding (StackHive)
+                          Positioned(
+                            top: 110,
+                            left: 150,
+                            child: Text(
+                              "StackHive",
+                              style: TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white.withValues(alpha: 0.95),
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                          ),
+
+                          /// Welcome Text
+                          Positioned(
+                            top: 150,
+                            left: 150,
+                            child: Text(
+                              "${greeting()}, ${user.name}",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white.withValues(alpha: 0.85),
+                              ),
+                            ),
+                          ),
+
+                          /// Settings Button (your original)
+                          Positioned(
+                            top: 50,
+                            right: 20,
+                            child: Container(
+                              height: 42,
+                              width: 42,
+                              decoration: BoxDecoration(
+                                color: theme.colorScheme.surface,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Center(
+                                child: IconButton(
+                                  icon: Icon(Icons.settings),
+                                  onPressed: () {
+                                    context.push('/settings');
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
 
@@ -97,7 +173,7 @@ class ProfileScreen extends ConsumerWidget {
                     // NAME
                     Positioned(
                       bottom: -82,
-                      left: 35,
+                      left: 25,
                       child: Text(user.name, style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.bold,)
                       ),
@@ -146,6 +222,10 @@ class ProfileScreen extends ConsumerWidget {
                 /// CHART
                 _SectionTitle('Chart'),
                 SizedBox(height: 18),
+                Text("See how you’ve contributed to the community", style: TextStyle(
+                  color: Colors.grey, fontSize: 14,
+                )),
+                SizedBox(height: 18),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: statsAsync.when(
@@ -154,6 +234,15 @@ class ProfileScreen extends ConsumerWidget {
                         const Center(child: CircularProgressIndicator()),
                     error: (e, _) => Text(e.toString()),
                   ),
+                ),
+                SizedBox(height: 18),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _legendDot(theme.colorScheme.primary, "Questions"),
+                    _legendDot(theme.colorScheme.secondary, "Answers"),
+                    _legendDot(Colors.orange, "Votes"),
+                  ],
                 ),
 
                 const SizedBox(height: 30),
@@ -422,4 +511,23 @@ class _Chart extends StatelessWidget {
       ],
     );
   }
+}
+
+Widget _legendDot(Color color, String label) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 8),
+    child: Row(
+      children: [
+        Container(
+          width: 10, height: 10,
+          decoration: BoxDecoration(
+            color: color,
+            shape: BoxShape.circle,
+          ),
+        ),
+        SizedBox(width: 6),
+        Text(label, style: TextStyle(fontSize: 12,color: Colors.grey)),
+      ],
+    ),
+  );
 }

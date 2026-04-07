@@ -8,16 +8,15 @@ final authRepositoryProvider = Provider((ref) => AuthRepository());
 class AuthController extends StateNotifier<AsyncValue<void>> {
   final AuthRepository _authRepository;
 
-  AuthController(this._authRepository)
-    : super(const AsyncValue.data(null));
+  AuthController(this._authRepository) : super(const AsyncValue.data(null));
 
   Future<void> register(String name, String email, String password) async {
     state = const AsyncValue.loading();
     try {
       await _authRepository.register(
-        name: name, 
-        email: email, 
-        password: password
+        name: name,
+        email: email,
+        password: password,
       );
       state = AsyncValue.data(null);
     } catch (e, st) {
@@ -27,14 +26,10 @@ class AuthController extends StateNotifier<AsyncValue<void>> {
 
   Future<void> login(String email, String password) async {
     state = const AsyncValue.loading();
-    try{
-      await _authRepository.login(
-        email: email, 
-        password: password
-      );
+    try {
+      await _authRepository.login(email: email, password: password);
       state = AsyncValue.data(null);
-
-    } catch (e, st) { 
+    } catch (e, st) {
       state = AsyncValue.error(e, st);
     }
   }
@@ -45,10 +40,11 @@ class AuthController extends StateNotifier<AsyncValue<void>> {
 }
 
 // StateNotifier Provider
-final authControllerProvider = StateNotifierProvider<AuthController, AsyncValue<void>>((ref) {
-  final repo = ref.read(authRepositoryProvider);
-  return AuthController(repo);
-});
+final authControllerProvider =
+    StateNotifierProvider<AuthController, AsyncValue<void>>((ref) {
+      final repo = ref.read(authRepositoryProvider);
+      return AuthController(repo);
+    });
 
 
 

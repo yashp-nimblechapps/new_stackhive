@@ -78,8 +78,6 @@ class AuthRepository {
   }
 }
 
-
-
 //What This Does
 
 //When user registers:

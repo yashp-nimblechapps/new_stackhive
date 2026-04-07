@@ -9,6 +9,13 @@ import 'package:stackhive/features/auth/provider/currentUserProvider.dart';
 class AdminProfileScreen extends ConsumerWidget {
   const AdminProfileScreen({super.key});
 
+  String greeting() {
+    final hour = DateTime.now().hour;
+    if (hour < 12) return "Good Morning";
+    if (hour < 18) return "Good Afternoon";
+    return "Good Evening";
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userAsync = ref.watch(currentUserProvider);
@@ -32,55 +39,96 @@ class AdminProfileScreen extends ConsumerWidget {
                 Stack(
                   clipBehavior: Clip.none,
                   children: [
+                    /// 🎨 HEADER BACKGROUND
                     Container(
                       height: 200,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: theme.colorScheme.primary,
+                        gradient: LinearGradient(
+                          colors: [
+                            theme.colorScheme.primary,
+                            theme.colorScheme.primary.withValues(alpha: 0.7),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
                       ),
-                    ),
-
-                    /// TOP BUTTONS
-                    Positioned(
-                      top: 50,
-                      left: 20,
-                      right: 20,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Stack(
                         children: [
-                          /// SIDEBAR BUTTON
-                          Builder(
-                            builder: (context) {
-                              return Container(
-                                width: 42,
-                                height: 42,
-                                decoration: BoxDecoration(
-                                  color: theme.colorScheme.surface,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: IconButton(
+                          /// Decorative Blob (Top Right)
+                          Positioned(
+                            top: -40,
+                            right: -30,
+                            child: Container(
+                              height: 140,
+                              width: 140,
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.08),
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ),
+
+                          /// Decorative Blob (Bottom Left)
+                          Positioned(
+                            bottom: -50,
+                            left: -30,
+                            child: Container(
+                              height: 120,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.05),
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ),
+
+                          /// MENU BUTTON (ONLY BUTTON IN HEADER)
+                          Positioned(
+                            top: 30,
+                            left: 10,
+                            child: Builder(
+                              builder: (context) {
+                                return IconButton(
                                   icon: const Icon(Icons.menu),
+                                  iconSize: 30,
+                                  color: Colors.white,
                                   onPressed: () {
                                     Scaffold.of(context).openDrawer();
                                   },
-                                ),
-                              );
-                            },
+                                );
+                              },
+                            ),
                           ),
 
-                          /// SETTINGS BUTTON
-                          Container(
-                            width: 42,
-                            height: 42,
-                            decoration: BoxDecoration(
-                              color: theme.colorScheme.surface,
-                              borderRadius: BorderRadius.circular(10),
+                          /// BRANDING (CENTERED)
+                          Positioned(
+                            top: 100,
+                            left: 40,
+                            right: 0,
+                            child: Center(
+                              child: Text(
+                                "StackHive",
+                                style: TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white.withValues(alpha: 0.95),
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
                             ),
-                            child: IconButton(
-                              icon: const Icon(Icons.settings),
-                              onPressed: () {
-                                context.push('/settings');
-                              },
+                          ),
+
+                          /// WELCOME TEXT
+                          Positioned(
+                            top: 140,
+                            left: 150,
+                            child: Text(
+                              "${greeting()}, ${user.name}",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white.withValues(alpha: 0.85),
+                              ),
                             ),
                           ),
                         ],
@@ -128,7 +176,7 @@ class AdminProfileScreen extends ConsumerWidget {
                     // NAME
                     Positioned(
                       bottom: -82,
-                      left: 62,
+                      left: 30,
                       child: Text(
                         user.name,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
