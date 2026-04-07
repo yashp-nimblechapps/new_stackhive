@@ -12,7 +12,20 @@
           "package_name": "com.example.stackhive"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "739978018228-tm5vsrlcemgtmdja2jpl3693bodcppfd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stackhive",
+            "certificate_hash": "281b2516460d24766e4da914a913345c3f6daade"
+          }
+        },
+        {
+          "client_id": "739978018228-vong5vm1dihfsoqpf2m5k1qn0p7jfj3j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCmzVyf3jr3Exa8iq_MdaCKOwd9x01Alds"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739978018228-jh3nk46n1fakecnibn3jn2fanaja0tq4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "739978018228-5bhpdca65js145tpgbt3cbgv8ap1b1lg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stackhive"
+              }
+            }
+          ]
         }
       }
     }

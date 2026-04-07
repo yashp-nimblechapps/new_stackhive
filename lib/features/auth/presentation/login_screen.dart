@@ -31,45 +31,55 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             padding: EdgeInsets.symmetric(horizontal: 24),
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // LOGO
-                Image.asset('assets/images/stackhive_blue.png', width: 200, height: 200),
+                /// LOGO + TITLE BLOCK
+                Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/stackhive_blue.png',
+                      width: 170,
+                      height: 170,
+                    ),
+                    SizedBox(height: 10),
 
-                // TITLE
-                Text(
-                  'Welcome Back',
-                  style: theme.textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                    Text(
+                      'Welcome Back',
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.3,
+                      ),
+                    ),
+                    SizedBox(height: 6),
+
+                    Text(
+                      'Login to continue to StackHive',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.hintColor,
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 6),
 
-                // SUBTITLE
-                Text(
-                  'Login to continue to StackHive',
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.hintColor,
-                  ),
-                ),
-                SizedBox(height: 32),
+                SizedBox(height: 24),
 
-                // LOGIN CARD
+                /// LOGIN CARD
                 Container(
-                  padding: EdgeInsets.all(24),
+                  padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: theme.cardColor,
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
-                        color: theme.shadowColor.withValues(alpha: 0.08),
-                        blurRadius: 24,
-                        offset: Offset(0, 12),
+                        color: theme.shadowColor.withValues(alpha: 0.06),
+                        blurRadius: 30,
+                        offset: Offset(0, 14),
                       ),
                     ],
                   ),
                   child: Column(
                     children: [
-                      // EMAIL FIELD
+                      /// EMAIL
                       TextField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
@@ -80,17 +90,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           fillColor: theme.brightness == Brightness.dark
                               ? theme.colorScheme.surfaceContainerHighest
                               : Color(0xFFF3F4F6),
-
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 18,
-                          ),
-
+                          contentPadding:
+                              EdgeInsets.symmetric(horizontal: 14, vertical: 16),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(14),
                             borderSide: BorderSide.none,
                           ),
-
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(14),
                             borderSide: BorderSide(
@@ -100,9 +105,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 16),
 
-                      // PASSWORD
+                      SizedBox(height: 14),
+
+                      /// PASSWORD
                       TextField(
                         controller: _passwordController,
                         obscureText: true,
@@ -113,17 +119,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           fillColor: theme.brightness == Brightness.dark
                               ? theme.colorScheme.surfaceContainerHighest
                               : Color(0xFFF3F4F6),
-
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 18,
-                          ),
-
+                          contentPadding:
+                              EdgeInsets.symmetric(horizontal: 16, vertical: 18),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(14),
                             borderSide: BorderSide.none,
                           ),
-
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(14),
                             borderSide: BorderSide(
@@ -133,9 +134,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 24),
 
-                      // LOGIN BUTTON
+                      SizedBox(height: 20),
+
+                      /// LOGIN BUTTON
                       SizedBox(
                         width: double.infinity,
                         height: 52,
@@ -151,23 +153,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           onPressed: authState.isLoading
                               ? null
                               : () async {
-                                  final notifier = ref.read(
-                                    authControllerProvider.notifier,
-                                  );
+                                  final notifier =
+                                      ref.read(authControllerProvider.notifier);
 
                                   await notifier.login(
                                     _emailController.text.trim(),
                                     _passwordController.text.trim(),
                                   );
+
                                   if (!mounted) return;
 
-                                  final user = await ref.refresh(
-                                    currentUserProvider.future,
-                                  );
+                                  final user = await ref
+                                      .refresh(currentUserProvider.future);
 
                                   if (user == null) return;
 
-                                  // Admin validation
                                   if (selectedRole == 'admin' &&
                                       user.role != 'admin') {
                                     AppSnackBar.show(
@@ -176,7 +176,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                     );
                                     return;
                                   }
-
                                 },
                           child: AnimatedSwitcher(
                             duration: Duration(milliseconds: 200),
@@ -199,9 +198,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 16),
 
-                      // REGISTER LINK
+                      SizedBox(height: 5),
+
+                      /// REGISTER LINK
                       TextButton(
                         onPressed: () => context.push('/register'),
                         child: Text("Don't have an account? Create one"),
@@ -218,8 +218,74 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ],
                   ),
                 ),
+
+                SizedBox(height: 14),
+
+                /// DIVIDER
+                Row(
+                  children: [
+                    Expanded(child: Divider()),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      child: Text(
+                        "OR",
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Expanded(child: Divider()),
+                  ],
+                ),
+
+                SizedBox(height: 14),
+
+                /// GOOGLE BUTTON (IMPROVED)
+                SizedBox(
+                  width: double.infinity,
+                  height: 52,
+                  child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: theme.cardColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(22),
+                      ),
+                      side: BorderSide(
+                        color: theme.dividerColor,
+                      ),
+                    ),
+                    onPressed: authState.isLoading
+                        ? null
+                        : () async {
+                            await ref
+                                .read(authControllerProvider.notifier)
+                                .signInWithGoogle();
+
+                            if (!mounted) return;
+
+                            final user = await ref
+                                .refresh(currentUserProvider.future);
+
+                            if (user == null) return;
+
+                            context.go('/home');
+                          },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/google.png',
+                          height: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Continue with Google",
+                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
-            ),
+            )
           ),
         ),
       ),
